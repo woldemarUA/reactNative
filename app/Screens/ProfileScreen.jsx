@@ -5,20 +5,35 @@ import { useNavigation } from '@react-navigation/native';
 import { useUser } from '../context/UserProvider';
 
 function ProfileScreen() {
-  const { handleLogout, user } = useUser();
-  console.log(user);
+  const { handleLogout, profile } = useUser();
   const navigate = useNavigation();
+  if (!profile) {
+    return (
+      <View>
+        <Text>Loading..</Text>
+      </View>
+    );
+  }
+  const {
+    displayName,
+    email,
+    emailVerified,
+    phoneNumber,
+    photoURL,
+    lastLoginAt,
+  } = profile;
+
   return (
     <>
       <View style={styles.container}>
-        <Text>Bonjour mon ami</Text>
+        <Text>Bonjour {email} </Text>
       </View>
       <View style={styles.button}>
         <Button
           title='Deconnecter'
           onPress={() =>
             handleLogout(() => {
-              navigate.reset({ index: 0, routes: [{ name: 'Login' }] });
+              navigate.reset({ index: 0, routes: [{ name: 'Connecter' }] });
             })
           }
         />

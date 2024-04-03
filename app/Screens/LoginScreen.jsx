@@ -15,56 +15,68 @@ const validation = Yup.object().shape({
     .required('Aucun mot de pass '),
 });
 
-export default function LoginScreen() {
-  const { handleLogin } = useUser();
+export default function LoginScreen({ route }) {
+  const { handleLogin, handleRegister } = useUser();
+  const { mode, titre } = route.params;
+
   const navigation = useNavigation();
 
-  return (
-    <Formik
-      initialValues={{ email: '', password: '' }}
-      onSubmit={(formValues) => {
-        handleLogin(formValues, () => {
-          //   navigation.navigate('Profile');
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'Profile' }],
-          });
-        });
-      }}
-      validationSchema={validation}>
-      {(formikProps) => {
-        return (
-          <View style={styles.container}>
-            <TextInput
-              style={styles.textInputContainer}
-              placeholder='Votre email'
-              onChangeText={formikProps.handleChange('email')}
-              value={formikProps.values.email}
-              onBlur={formikProps.handleBlur('email')}
-            />
-            {formikProps.touched.email && formikProps.errors.email ? (
-              <Text> {formikProps.errors.email} </Text>
-            ) : null}
+  const redirect = () => {
+    return navigation.reset({
+      index: 0,
+      routes: [{ name: 'Profile' }],
+    });
+  };
 
-            <TextInput
-              placeholder='votre mot de pass'
-              style={styles.textInputContainer}
-              secureTextEntry={true}
-              onChangeText={formikProps.handleChange('password')}
-              value={formikProps.values.password}
-              onBlur={formikProps.handleBlur('password')}
-            />
-            {formikProps.touched.password && formikProps.errors.password ? (
-              <Text> {formikProps.errors.password} </Text>
-            ) : null}
-            <Button
-              title='Connecter'
-              onPress={formikProps.handleSubmit}
-            />
-          </View>
-        );
-      }}
-    </Formik>
+  return (
+    <>
+      <Formik
+        initialValues={{ email: '', password: '' }}
+        onSubmit={(formValues) => {
+          const onSuccess = () => redirect();
+          if (mode === 'login') {
+            handleLogin(formValues, onSuccess);
+          } else {
+            handleRegister(formValues, () => {
+              handleLogin(formValues, onSuccess);
+            });
+          }
+        }}
+        validationSchema={validation}>
+        {(formikProps) => {
+          return (
+            <View style={styles.container}>
+              <TextInput
+                style={styles.textInputContainer}
+                placeholder='Votre email'
+                onChangeText={formikProps.handleChange('email')}
+                value={formikProps.values.email}
+                onBlur={formikProps.handleBlur('email')}
+              />
+              {formikProps.touched.email && formikProps.errors.email ? (
+                <Text> {formikProps.errors.email} </Text>
+              ) : null}
+
+              <TextInput
+                placeholder='votre mot de pass'
+                style={styles.textInputContainer}
+                secureTextEntry={true}
+                onChangeText={formikProps.handleChange('password')}
+                value={formikProps.values.password}
+                onBlur={formikProps.handleBlur('password')}
+              />
+              {formikProps.touched.password && formikProps.errors.password ? (
+                <Text> {formikProps.errors.password} </Text>
+              ) : null}
+              <Button
+                title={titre}
+                onPress={formikProps.handleSubmit}
+              />
+            </View>
+          );
+        }}
+      </Formik>
+    </>
   );
 }
 

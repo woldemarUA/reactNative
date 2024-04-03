@@ -15,8 +15,14 @@ export default function DrawerMenu() {
         component={HomeScreen}
       />
       <Drawer.Screen
-        name='Login'
+        name='Connecter'
         component={LoginScreen}
+        initialParams={{ mode: 'login', titre: 'Connecter' }}
+      />
+      <Drawer.Screen
+        name="S'inscrire"
+        component={LoginScreen}
+        initialParams={{ mode: 'register', titre: "S'inscrire" }}
       />
       <Drawer.Screen
         name='Profile'
