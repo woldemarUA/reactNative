@@ -4,10 +4,20 @@
     "slug": "AuthNative",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "light",
+    "extras": {
+      "firebase_apiKey": "AIzaSyDERIKp_D_2KkgFzx8Y7YvhafmFq8XHiys",
+      "firebase_authDomain": "angular-auth-7b780.firebaseapp.com",
+      "firebase_projectId": "angular-auth-7b780",
+      "firebase_storageBucket": "angular-auth-7b780.appspot.com",
+      "firebase_messagingSenderId": "844648535210",
+      "firebase_appId": "1:844648535210:web:edd3568a842fea844facd3",
+      "firebase_measurementId": "G-KCWGVC9ZCL",
+      "firebase_databaseURL": "https://angular-auth-7b780-default-rtdb.europe-west1.firebasedatabase.app/"
+    },
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./app/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,13 +28,14 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.tymchenko.authnative",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./app/assets/favicon.png"
     }
   }
 }
