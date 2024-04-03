@@ -11,6 +11,7 @@ function ProfileScreen() {
     return (
       <View>
         <Text>Loading..</Text>
+        <CameraComponent></CameraComponent>
       </View>
     );
   }

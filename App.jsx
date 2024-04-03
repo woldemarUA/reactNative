@@ -6,11 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DrawerMenu from './app/menu/DrawerMenu';
 const Stack = createNativeStackNavigator();
 
-
 import AppContextProvider from './app/context/AppContextProvider';
-
-
-
 
 export default function App() {
   return (
@@ -24,6 +20,5 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </AppContextProvider>
-
   );
 }

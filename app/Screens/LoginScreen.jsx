@@ -54,7 +54,7 @@ export default function LoginScreen({ route }) {
                 onBlur={formikProps.handleBlur('email')}
               />
               {formikProps.touched.email && formikProps.errors.email ? (
-                <Text> {formikProps.errors.email} </Text>
+                <Text style={styles.error}> {formikProps.errors.email} </Text>
               ) : null}
 
               <TextInput
@@ -66,7 +66,7 @@ export default function LoginScreen({ route }) {
                 onBlur={formikProps.handleBlur('password')}
               />
               {formikProps.touched.password && formikProps.errors.password ? (
-                <Text> {formikProps.errors.password} </Text>
+                <Text style={styles.error}>{formikProps.errors.password}</Text>
               ) : null}
               <Button
                 title={titre}
@@ -87,9 +87,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
+  error: {
+    color: 'red',
+    backgroundColor: 'white',
+    padding: 2,
+    borderRadius: 2,
+    marginBottom: 3,
+  },
   textInputContainer: {
     backgroundColor: 'white',
+    padding: 6,
+    borderRadius: 4,
     width: '50%',
     marginBottom: 5,
   },
